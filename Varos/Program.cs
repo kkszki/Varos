@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Mysqlx.Crud;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Varos.Database;
 using Varos.Models;
+
 
 namespace Varos
 {
@@ -26,7 +29,12 @@ namespace Varos
             }
             Console.WriteLine($"Összbevétel: {ossz}");
 
+            Database.Database.CreateDatabase();
+            Console.WriteLine("adjunk az adatbázishoz adatot!");
+            Database.Database.AddData();
+
         }
+
     }
 }
 
