@@ -32,6 +32,7 @@ namespace Varos
             Database.Database.CreateDatabase();
             Console.WriteLine("adjunk az adatbázishoz adatot!");
             Database.Database.AddData();
+            Database.Database.SelectData();
 
         }
 

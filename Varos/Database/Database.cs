@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Varos.Models;
 
 namespace Varos.Database
 {
@@ -66,6 +67,30 @@ namespace Varos.Database
         {
             MySqlConnection conn = GetConnection();
             conn.Open();
+
+            string selectvasut = "SELECT `km` FROM `gyorsvasut`";
+
+            MySqlCommand cmd= new MySqlCommand(selectvasut, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            List<int> vasutkms=new List<int>();
+            List<Utazas> utazasok=new List<Utazas>();
+            while (reader.Read())
+            {
+                int vasutkm=reader.GetInt32(0);
+                vasutkms.Add(vasutkm);  
+            }
+            foreach (int i in vasutkms)
+            {
+                utazasok.Add(new GyorsVasut() { Km = i });
+            }
+
+
+            Console.WriteLine("Vasúti utazások száma!");
+
+            foreach(Utazas utazas in utazasok)
+            {
+                Console.WriteLine(utazas.arSzamitas());
+            }
 
 
 
